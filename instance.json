@@ -1,0 +1,20 @@
+{
+  "assignPublicIp": true, 
+  "availabilityDomain": "mmXc:PHX-AD-3", 
+  "compartmentId": "ocid1.compartment.oc1..aaaaaaaa4vxl6yyvfcumwutejntiu3tzcwacbpgdqndh3kct5i65ahvz7oma", 
+  "displayName": "gold-master", 
+  "freeformTags": {
+    "instance_role": "gold_master"
+  }, 
+  "shape": "VM.Standard2.1", 
+  "sourceDetails": 
+    {
+      "imageId": "ocid1.image.oc1.phx.aaaaaaaaklifrcpkhjgszalaoitdshyxbxog3wm5ccol55m2apw3fg3mjndq", 
+      "sourceType": "image"
+    }, 
+  "sshAuthorizedKeysFile": "munich.pub", 
+  "subnetId": "ocid1.subnet.oc1.phx.aaaaaaaa7iogkqmn7fu2q2k4nokxo7c5rh6dssuvi2xr2wbitpnsn6t3h3iq", 
+  "userDataFile": "instance-init.yaml", 
+  "waitForState": "RUNNING", 
+  "waitIntervalSeconds": 300
+}

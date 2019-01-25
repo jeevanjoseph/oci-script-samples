@@ -1,0 +1,222 @@
+[
+  "This parameter should actually be a JSON object rather than an array - pick one of the following object variants to use", 
+  {
+    "blockVolumes": [
+      {
+        "attachDetails": [
+          "This parameter should actually be a JSON object rather than an array - pick one of the following object variants to use", 
+          {
+            "displayName": "string", 
+            "isReadOnly": true, 
+            "type": "iscsi", 
+            "useChap": true
+          }, 
+          {
+            "displayName": "string", 
+            "isReadOnly": true, 
+            "type": "paravirtualized"
+          }
+        ], 
+        "createDetails": {
+          "availabilityDomain": "string", 
+          "backupPolicyId": "string", 
+          "compartmentId": "string", 
+          "definedTags": {
+            "string1": {
+              "string1": {
+                "string1": "string", 
+                "string2": "string"
+              }, 
+              "string2": {
+                "string1": "string", 
+                "string2": "string"
+              }
+            }, 
+            "string2": {
+              "string1": {
+                "string1": "string", 
+                "string2": "string"
+              }, 
+              "string2": {
+                "string1": "string", 
+                "string2": "string"
+              }
+            }
+          }, 
+          "displayName": "string", 
+          "freeformTags": {
+            "string1": "string", 
+            "string2": "string"
+          }, 
+          "sizeInGBs": 0, 
+          "sourceDetails": [
+            "This parameter should actually be a JSON object rather than an array - pick one of the following object variants to use", 
+            {
+              "id": "string", 
+              "type": "volumeBackup"
+            }, 
+            {
+              "id": "string", 
+              "type": "volume"
+            }
+          ]
+        }, 
+        "volumeId": "string"
+      }, 
+      {
+        "attachDetails": [
+          "This parameter should actually be a JSON object rather than an array - pick one of the following object variants to use", 
+          {
+            "displayName": "string", 
+            "isReadOnly": true, 
+            "type": "iscsi", 
+            "useChap": true
+          }, 
+          {
+            "displayName": "string", 
+            "isReadOnly": true, 
+            "type": "paravirtualized"
+          }
+        ], 
+        "createDetails": {
+          "availabilityDomain": "string", 
+          "backupPolicyId": "string", 
+          "compartmentId": "string", 
+          "definedTags": {
+            "string1": {
+              "string1": {
+                "string1": "string", 
+                "string2": "string"
+              }, 
+              "string2": {
+                "string1": "string", 
+                "string2": "string"
+              }
+            }, 
+            "string2": {
+              "string1": {
+                "string1": "string", 
+                "string2": "string"
+              }, 
+              "string2": {
+                "string1": "string", 
+                "string2": "string"
+              }
+            }
+          }, 
+          "displayName": "string", 
+          "freeformTags": {
+            "string1": "string", 
+            "string2": "string"
+          }, 
+          "sizeInGBs": 0, 
+          "sourceDetails": [
+            "This parameter should actually be a JSON object rather than an array - pick one of the following object variants to use", 
+            {
+              "id": "string", 
+              "type": "volumeBackup"
+            }, 
+            {
+              "id": "string", 
+              "type": "volume"
+            }
+          ]
+        }, 
+        "volumeId": "string"
+      }
+    ], 
+    "instanceType": "compute", 
+    "launchDetails": {
+      "availabilityDomain": "string", 
+      "compartmentId": "string", 
+      "createVnicDetails": {
+        "assignPublicIp": true, 
+        "displayName": "string", 
+        "hostnameLabel": "string", 
+        "privateIp": "string", 
+        "skipSourceDestCheck": true, 
+        "subnetId": "string"
+      }, 
+      "definedTags": {
+        "string1": {
+          "string1": {
+            "string1": "string", 
+            "string2": "string"
+          }, 
+          "string2": {
+            "string1": "string", 
+            "string2": "string"
+          }
+        }, 
+        "string2": {
+          "string1": {
+            "string1": "string", 
+            "string2": "string"
+          }, 
+          "string2": {
+            "string1": "string", 
+            "string2": "string"
+          }
+        }
+      }, 
+      "displayName": "string", 
+      "extendedMetadata": {
+        "string1": {
+          "string1": "string", 
+          "string2": "string"
+        }, 
+        "string2": {
+          "string1": "string", 
+          "string2": "string"
+        }
+      }, 
+      "freeformTags": {
+        "string1": "string", 
+        "string2": "string"
+      }, 
+      "ipxeScript": "string", 
+      "metadata": {
+        "string1": "string", 
+        "string2": "string"
+      }, 
+      "shape": "string", 
+      "sourceDetails": [
+        "This parameter should actually be a JSON object rather than an array - pick one of the following object variants to use", 
+        {
+          "bootVolumeId": "string", 
+          "sourceType": "bootVolume"
+        }, 
+        {
+          "imageId": "string", 
+          "sourceType": "image"
+        }
+      ]
+    }, 
+    "secondaryVnics": [
+      {
+        "createVnicDetails": {
+          "assignPublicIp": true, 
+          "displayName": "string", 
+          "hostnameLabel": "string", 
+          "privateIp": "string", 
+          "skipSourceDestCheck": true, 
+          "subnetId": "string"
+        }, 
+        "displayName": "string", 
+        "nicIndex": 0
+      }, 
+      {
+        "createVnicDetails": {
+          "assignPublicIp": true, 
+          "displayName": "string", 
+          "hostnameLabel": "string", 
+          "privateIp": "string", 
+          "skipSourceDestCheck": true, 
+          "subnetId": "string"
+        }, 
+        "displayName": "string", 
+        "nicIndex": 0
+      }
+    ]
+  }
+]

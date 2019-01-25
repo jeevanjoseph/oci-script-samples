@@ -1,0 +1,44 @@
+#cloud-config
+# vim: syntax=yaml
+#
+
+# yum_repos:
+#   # The name of the repository
+#   docker:
+#     # Any repository configuration options
+#     # See: man yum.conf
+#     #
+#     # This one is required!
+#     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+#     enabled: true
+#     name: Docker CE
+
+groups:
+  - docker
+
+# Add users to the system. Users are added after groups are added.
+users:
+  - default
+  - name: oracle
+    gecos: Oracle
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    primary-group: oracle
+    groups: users, docker
+    expiredate: 2012-09-01
+    lock_passwd: true
+
+
+package_upgrade: true
+
+packages:
+ - yum-utils
+ - device-mapper-persistent-data
+ - lvm2
+ - docker-engine
+
+runcmd:
+  - [ sh, -xc, "systemctl start docker"]
+  - [ sh, -xc, "docker pull node:latest"]
+  - [ sh, -xc, "touch /tmp/signal"]
+
+
