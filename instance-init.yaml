@@ -38,6 +38,7 @@ packages:
 
 runcmd:
   - [ sh, -xc, "systemctl start docker"]
+  - [ sh, -xc, "systemctl enable docker"]
   - [ sh, -xc, "docker pull node:latest"]
   - [ sh, -xc, "touch /tmp/signal"]
 

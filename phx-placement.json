@@ -1,0 +1,15 @@
+[
+  {
+    "availabilityDomain": "mmXc:PHX-AD-1", 
+    "primarySubnetId": "ocid1.subnet.oc1.phx.aaaaaaaa72tg2kqt5hud7tiuhtdykgnyqrs6cfqczclyratfh7n2jjjiz3xq"
+  }, 
+  {
+    "availabilityDomain": "mmXc:PHX-AD-2", 
+    "primarySubnetId": "ocid1.subnet.oc1.phx.aaaaaaaabhc2kqwtm3egh6vyadatkuazcd6pruwemvnkogfsinijwthcsa7a"
+    
+  },
+  {
+    "availabilityDomain": "mmXc:PHX-AD-3", 
+    "primarySubnetId": "ocid1.subnet.oc1.phx.aaaaaaaa7iogkqmn7fu2q2k4nokxo7c5rh6dssuvi2xr2wbitpnsn6t3h3iq"
+  }
+]

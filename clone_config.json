@@ -3,7 +3,7 @@
   "instanceType": "compute",
   "launchDetails": {
     "availability-domain": null,
-    "compartment-id": "_REPLACE_THIS_",
+    "compartment-id": "ocid1.compartment.oc1..aaaaaaaa4vxl6yyvfcumwutejntiu3tzcwacbpgdqndh3kct5i65ahvz7oma",
     "create-vnic-details": {
       "assign-public-ip": true,
       "display-name": "node",
@@ -20,7 +20,7 @@
     "metadata": {},
     "shape": "VM.Standard2.1",
     "source-details": {
-      "image-id": "_REPLACE_THIS_",
+      "image-id": "ocid1.image.oc1.phx.aaaaaaaar4mkyacuuxosvay3zqdhsxpekqyliiz765nk5woznuhhip374pra",
       "source-type": "image"
     }
   },
