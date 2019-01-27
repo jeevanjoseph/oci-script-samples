@@ -6,16 +6,18 @@
     "compartment-id": "_REPLACE_THIS_",
     "create-vnic-details": {
       "assign-public-ip": true,
-      "display-name": "node",
+      "display-name": "localnode",
       "hostname-label": null,
       "private-ip": null,
       "skip-source-dest-check": false,
       "subnet-id": null
     },
     "defined-tags": null,
-    "display-name": "gold-master-ic",
+    "display-name": "node",
     "extended-metadata": null,
-    "freeform-tags": null,
+    "freeform-tags": {
+      "instance_role":"streaming_node"
+    },
     "ipxe-script": null,
     "metadata": {},
     "shape": "VM.Standard2.1",

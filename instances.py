@@ -15,6 +15,5 @@ for instance in sorted(instance_list, key=attrgetter('id')):
     for vnic_attachment in vnic_attachments:
         if (vnic_attachment.instance_id == instance.id) and (vnic_attachment.lifecycle_state == "ATTACHED"):
             vnic = networkClient.get_vnic(vnic_attachment.vnic_id).data
-            print(instance.id +" - ["+ instance.lifecycle_state +"] ("+ vnic.public_ip +")")
-
-
+            print(
+                instance.id + " - [" + instance.lifecycle_state + "] (" + vnic.public_ip + ")")

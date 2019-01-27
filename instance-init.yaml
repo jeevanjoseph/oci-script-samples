@@ -28,7 +28,6 @@ users:
     lock_passwd: true
 
 
-package_upgrade: true
 
 packages:
  - yum-utils

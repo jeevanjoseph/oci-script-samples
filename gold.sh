@@ -3,6 +3,9 @@
 # set virtualenv
 source ~/dev/oci/virtualenv/bin/activate
 
+idle_role_tag="idle"
+build_tag="2019.01.001"
+
 echo "Starting to provision a gold instance..."
 # create an instance based on template. blocking enabled, so that we get the instance details synchronously.
 # template used creates only a single vnic for the sample. this is likely inadequate for actual use, however
@@ -53,13 +56,19 @@ image_detail=$(oci compute image create --compartment-id=${compartment_id} --ins
 gold_image_id=$(echo ${image_detail}|jq -r -C '.data["id"]')
 echo "Gold image created. Image Id : ${gold_image_id}"
 
+
 # create an instance configuration based on the gold instance.
-# 1. setup the instance config from a template. @TODO better templating
+# setup the instance config from a template. @TODO better templating
 
 cat inst_conf.json |jq --arg gold_image_id "$gold_image_id" '.launchDetails["source-details"]["image-id"] = $gold_image_id'\
+    |jq --arg idle_role_tag "$idle_role_tag" '.launchDetails["freeform-tags"]["instance_role"] = $idle_role_tag'\
+    |jq --arg build_tag "$build_tag" '.launchDetails["freeform-tags"]["build"] = $build_tag'\
+    |jq '.launchDetails["display-name"] = "node"'\
+    |jq '.launchDetails["create-vnic-details"]["display-name"] = "localnode"'\
     |jq --arg compartment_id "$compartment_id" '.launchDetails["compartment-id"] = $compartment_id' > clone_config.json
 
-# 2. use the template to create an instance config. We'll use this to create a pool and spin up the fleet.
+## Whats below : uses instance pools to deal with the resources in units larger than a single instance. Completely optional.
+# use the template to create an instance config. We'll use this to create a pool and spin up the fleet.
 
 inst_config_detail=$(oci compute-management instance-configuration create --compartment-id=${compartment_id} --instance-details=file://clone_config.json)
 

@@ -6,21 +6,24 @@
     "compartment-id": "ocid1.compartment.oc1..aaaaaaaa4vxl6yyvfcumwutejntiu3tzcwacbpgdqndh3kct5i65ahvz7oma",
     "create-vnic-details": {
       "assign-public-ip": true,
-      "display-name": "node",
+      "display-name": "localnode",
       "hostname-label": null,
       "private-ip": null,
       "skip-source-dest-check": false,
       "subnet-id": null
     },
     "defined-tags": null,
-    "display-name": "gold-master-ic",
+    "display-name": "node",
     "extended-metadata": null,
-    "freeform-tags": null,
+    "freeform-tags": {
+      "instance_role": "streaming_node",
+      "build": "2019.01.001"
+    },
     "ipxe-script": null,
     "metadata": {},
     "shape": "VM.Standard2.1",
     "source-details": {
-      "image-id": "ocid1.image.oc1.phx.aaaaaaaar4mkyacuuxosvay3zqdhsxpekqyliiz765nk5woznuhhip374pra",
+      "image-id": "ocid1.image.oc1.phx.aaaaaaaa2xp535uigowpqryraqhnt5po4zxc2u7c5raab4c5jpyub2dla6ua",
       "source-type": "image"
     }
   },

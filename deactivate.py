@@ -14,9 +14,10 @@ instancePools = managementClient.list_instance_pools(compartment_id).data
 # Naively assuming a single instance pool
 instance_pool_id = instancePools[0].id
 
-instances = managementClient.list_instance_pool_instances(compartment_id,instance_pool_id).data
+instances = managementClient.list_instance_pool_instances(
+    compartment_id, instance_pool_id).data
 
 for instance in sorted(instances, key=attrgetter('state')):
-    computeClient.instance_action(instance.id,"STOP")
+    computeClient.instance_action(instance.id, "STOP")
 
 managementClient.stop_instance_pool(instance_pool_id)
