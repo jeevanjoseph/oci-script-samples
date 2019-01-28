@@ -47,10 +47,9 @@ while getopts ":n:c:a:k:v:p:l:h" opt; do
 done
 shift $((OPTIND -1))
 
-if [ ! -z ${action+x} ]; then
-    echo ${fleet_size} ${action} ${tag_key} ${tag_value} ${compartment_id} ${placement_template+x} ${launch_template+x}
-fi
-
+# check options and delegate.
+# node creation is handled by one script, and nod eactions by another.
+# these can be unified.
 if [[ ! -z ${action+x} && ${action} = "PROVISION" ]] ; then
     if [[ ! -z ${fleet_size} && ! -z ${placement_template+x} && ! -z ${launch_template+x} ]] ; then
         python create_nodes.py ${fleet_size} ${placement_template} ${launch_template}

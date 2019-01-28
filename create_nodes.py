@@ -59,7 +59,7 @@ for idx in range(instance_count):
             assign_public_ip    = instance_template["launchDetails"]["create-vnic-details"]["assign-public-ip"]
         )
     )
-    # Launh the instance and track the instnace IDs in the list.
+    # Launch the instance and track the instance IDs in the list.
     # NOTE the use of the RetryStrategy.
     launch_config_list.append(
         computeClient.launch_instance(
