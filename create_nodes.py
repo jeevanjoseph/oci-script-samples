@@ -7,12 +7,14 @@ import time
 # Check args
 # @TODO : use  a better module for parsing args to handle UNIX and GNU style args
 #------------
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     raise RuntimeError('Invalid number of arguments provided to the script.\n'+
                         'Consult the script header for required arguments.\n'+
                         'Usage : create [count: number of instances] [region-code: ex:phx]. \n')  
-region = sys.argv[2]
+
 instance_count = int(sys.argv[1])
+placement = sys.argv[2]
+launch_template = sys.argv[3]
 
 #------------
 # Setup OCI module and config. Using the default profile implicitly
@@ -26,8 +28,8 @@ networkClient = oci.core.VirtualNetworkClient(config)
 # Get the launch config and placement config for launching instances.
 #------------
 launch_config_list  = []
-placement_config    = json.loads(open(region+'-placement.json').read())
-instance_template   = json.loads(open('clone_config.json').read())
+placement_config    = json.loads(open(placement).read())
+instance_template   = json.loads(open(launch_template).read())
 
 #------------
 # Start provisioning the instances
