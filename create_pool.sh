@@ -9,22 +9,32 @@ compartment_id=""
 while getopts ":n:c:p:h" opt; do
   case ${opt} in
     h )
-      echo "Usage: create_pool -n [num] -c [path_to_launch_config] -p [path_to_placement_config]"
+      echo "Usage: ${0} -n [num] -l [path_to_launch_config] -p [path_to_placement_config]"
       echo "        -n [num]     Number of isntances in instance pool"
-      echo "        -c [path_to_launch_config] Path to the JSON launch config file "
+      echo "        -l [path_to_launch_config] Path to the JSON launch config file "
       exit 0
       ;;
     n )
         fleet_size=$OPTARG
         ;;
-    c )
+    l )
         launch_config_file=$OPTARG
+        ;;
+    p )
+        placement_template=$OPTARG
+        ;;
+    l )
+        launch_template=$OPTARG
         compartment_id=$(jq -r '.launchDetails["compartment-id"]' ${launch_config_file})
         ;;
     \? )
-      echo "Invalid Option: -$OPTARG" 1>&2
-      exit 1
-      ;;
+        echo "Invalid Option: -$OPTARG" 1>&2
+        exit 1
+        ;;
+    : )
+        echo "Invalid Option: -$OPTARG requires an argument" 1>&2
+        exit 1
+        ;;
   esac
 done
 shift $((OPTIND -1))
