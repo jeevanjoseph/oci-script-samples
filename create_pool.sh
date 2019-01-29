@@ -6,7 +6,7 @@ source ~/dev/oci/virtualenv/bin/activate
 fleet_size=0
 compartment_id=""
 
-while getopts ":n:c:p:h" opt; do
+while getopts ":n:l:p:h" opt; do
   case ${opt} in
     h )
       echo "Usage: ${0} -n [num] -l [path_to_launch_config] -p [path_to_placement_config]"
@@ -17,15 +17,12 @@ while getopts ":n:c:p:h" opt; do
     n )
         fleet_size=$OPTARG
         ;;
-    l )
-        launch_config_file=$OPTARG
-        ;;
     p )
         placement_template=$OPTARG
         ;;
     l )
         launch_template=$OPTARG
-        compartment_id=$(jq -r '.launchDetails["compartment-id"]' ${launch_config_file})
+        compartment_id=$(jq -r '.launchDetails["compartment-id"]' ${launch_template})
         ;;
     \? )
         echo "Invalid Option: -$OPTARG" 1>&2
@@ -42,11 +39,10 @@ shift $((OPTIND -1))
 # ---------
 
 echo "Provisioning isntance pool with ${fleet_size} isntances in compartment ${compartment_id}."
-exit 1;
 
 # use the template to create an instance config. We'll use this to create a pool and spin up the fleet.
 
-inst_config_detail=$(oci compute-management instance-configuration create --compartment-id=${compartment_id} --instance-details=file://clone_config.json)
+inst_config_detail=$(oci compute-management instance-configuration create --compartment-id=${compartment_id} --instance-details=file://${launch_template})
 
 # get the isntance config ID
 inst_config_id=$(echo ${inst_config_detail}|jq -r '.data["id"]')
@@ -61,7 +57,7 @@ echo "Creating an Instance Pool with ${fleet_size} nodes. Placement based on con
 
 inst_pool_detail=$(oci compute-management instance-pool create \
     --compartment-id=${compartment_id} --instance-configuration-id=${inst_config_id} \
-    --placement-configurations=file://phx-placement.json --size=${fleet_size} --wait-for-state="RUNNING")
+    --placement-configurations=file://${placement_template} --size=${fleet_size} --wait-for-state="RUNNING")
 
 inst_pool_id=$(echo ${inst_pool_detail}|jq -r '.data["id"]')
 

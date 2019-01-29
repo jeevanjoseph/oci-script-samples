@@ -6,16 +6,14 @@ source ~/dev/oci/virtualenv/bin/activate
 
 if [ -p /dev/stdin ]; then
     input_json=$(cat)
-    data=$(echo ${input_json}|jq -r '.data'&>/dev/null) 
-        if [[ -n ${data} ]] ; then
-            for ids in $(echo ${data}|jq '.[].id')
-            do
-                echo "[ ${ids} ]"
-            done
-        else
-            echo "Unreadable data was piped to this script. Input from stdin is expected to be valid OCI API JSON."
-            exit 1
-        fi
+    data=$(echo ${input_json}|jq -r '.data') 
+    echo ${data}
+    if [[ -n ${data} ]] ; then
+        echo "using JSON piped in."
+    else
+        echo "Unreadable data was piped to this script. Input from stdin is expected to be valid OCI API JSON."
+        exit 1
+    fi
 	 
 fi
 
@@ -77,10 +75,19 @@ if [[ -n ${action+x} && ${action} = "PROVISION" ]] ; then
         echo "fleet size, placement_config and launch_templates are required. use -h for help"
     fi
 else
-    if [[ -n ${fleet_size} && -n ${action} && -n ${tag_key} && -n ${tag_value} && -n ${compartment_id} ]] ; then
-        python apply-action.py ${fleet_size} ${action} ${tag_key} ${tag_value} ${compartment_id}
+    if [[ -n ${input_json} && -n ${action} ]] ; then
+        compartment_id=$(echo ${input_json}|jq -r '.data[0]["compartment-id"]')
+        for instance_id in $(echo ${input_json}|jq -r '.data[].id')
+        do
+            result=$(oci compute instance action --instance-id=${instance_id} --action=${action})
+            echo ${result}
+        done
     else
-        echo "fleet size, action, tag_key, tag_value and compartment_id are required. use -h for help"
+        if [[ -n ${fleet_size} && -n ${action} && -n ${tag_key} && -n ${tag_value} && -n ${compartment_id} ]] ; then
+            python apply-action.py ${fleet_size} ${action} ${tag_key} ${tag_value} ${compartment_id}
+        else
+            echo "fleet size, action, tag_key, tag_value and compartment_id are required. use -h for help"
+        fi
     fi
 fi
     
