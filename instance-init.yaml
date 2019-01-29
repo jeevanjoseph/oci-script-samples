@@ -38,7 +38,8 @@ packages:
 runcmd:
   - [ sh, -xc, "systemctl start docker"]
   - [ sh, -xc, "systemctl enable docker"]
-  - [ sh, -xc, "docker pull node:latest"]
+  - [ sh, -xc, "docker pull redis:latest"]
+  - [ sh, -xc, "(crontab -l 2>/dev/null; echo '@reboot docker run -d redis:latest ') | crontab -"]
   - [ sh, -xc, "touch /tmp/signal"]
 
 
